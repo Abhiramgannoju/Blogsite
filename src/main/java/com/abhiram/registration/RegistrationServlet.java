@@ -34,8 +34,7 @@ public class RegistrationServlet extends HttpServlet {
     	   String repass=request.getParameter("re_pass");
     	   String ucontact=request.getParameter("contact");
     	   String data = "Hello from the first servlet";
-    	   HttpSession session = request.getSession();
-    	   session.setAttribute("data", data);
+    	
 
     	
    		   if (!upassword.equals(repass)) {

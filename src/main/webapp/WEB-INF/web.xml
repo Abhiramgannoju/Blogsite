@@ -49,4 +49,14 @@
     <servlet-name>blog</servlet-name>
     <url-pattern>/blog</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>about</display-name>
+    <servlet-name>about</servlet-name>
+    <servlet-class>com.abhiram.registration.about</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>about</servlet-name>
+    <url-pattern>/about</url-pattern>
+  </servlet-mapping>
 </web-app>

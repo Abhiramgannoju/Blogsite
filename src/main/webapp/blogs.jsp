@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retrieve data from database in JSP</title>
+    <title>All Blogs</title>
     <link rel="stylesheet" href="css/index2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,6 +72,8 @@
             String sql = "SELECT * FROM image";
 
             boolean foundResults = false;
+           
+          
             String sortOption = request.getParameter("myDropdown");
             
             if (sortOption != null && sortOption.equals("option1")) {
@@ -97,6 +99,7 @@
                 int id = resultSet.getInt("id");
                 String topic = resultSet.getString("topic");
                 String textarea = resultSet.getString("textarea");
+                String username = resultSet.getString("username");
                 byte[] imageBytes = resultSet.getBytes("image");
                
                 // Convert image bytes to Base64 string
@@ -108,7 +111,7 @@
   <div class="section">
     <h1 class="heading" style="text-align: center;"><%= topic %></h1>
     <p class="text"><%= textarea %></p>
-      
+   
 
     <% if (base64Image != null && !base64Image.isEmpty()) { %>
       <div style="display: flex; justify-content: center;">
@@ -116,6 +119,9 @@
       </div>
     <% } %>
   </div>
+       <div style="width: 100%; height: 5%;  float: right; text-align:right;">
+       uploaded by : <Strong><%= username %></Strong>
+       </div>
 </div>
 
     <%

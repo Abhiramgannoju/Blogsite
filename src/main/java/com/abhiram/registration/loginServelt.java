@@ -27,9 +27,12 @@ public class loginServelt extends HttpServlet {
 		String upass=request.getParameter("password");
 		RequestDispatcher dispacher=null;
 		HttpSession session=request.getSession();
+		   
+    	   
 		Connection con=null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			
 			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db?useSSL=false","root","Abhiram@123");
 			PreparedStatement pst=con.prepareStatement("select * from users where email= ? and password=?");
 			pst.setString(1,uemail);
@@ -38,6 +41,7 @@ public class loginServelt extends HttpServlet {
 			if(rs.next())
 			{
 				session.setAttribute("name", rs.getString("email"));
+				session.setAttribute("username", rs.getString("username"));
 				dispacher=request.getRequestDispatcher("index.jsp");
 			}else
 			{

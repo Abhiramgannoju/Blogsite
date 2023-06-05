@@ -38,13 +38,9 @@ public class create extends HttpServlet {
 	    InputStream fileContent = filePart.getInputStream();
     	   String topicname=request.getParameter("topicname");
     	   String text=request.getParameter("text");
-    
-  
-
-           // Printing the username to the response
-
-    	  
-//    	   out.print(repass);
+    	   HttpSession session=request.getSession();
+    	   String username = (String) session.getAttribute("username");
+    	   
     	  if (topicname == null || topicname.trim().isEmpty() || text == null || text.trim().isEmpty()) {
     	    request.setAttribute("status", "failed");
     	    request.setAttribute("message", "Please provide both the topic name and the text.");
@@ -59,13 +55,13 @@ public class create extends HttpServlet {
     		   Class.forName("com.mysql.jdbc.Driver");
     		    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db","root","Abhiram@123");
     		  
-    		    String SQL=("insert into image(topic,textarea,image) values(?,?,?)");
+    		    String SQL=("insert into image(topic,textarea,image,username) values(?,?,?,?)");
                
     		    PreparedStatement pst1= con.prepareStatement(SQL);
     			pst1.setString(1,topicname);
     			pst1.setString(2,text);
     			pst1.setBinaryStream(3, fileContent);
-    			
+    			pst1.setString(4,username);
     			
     		   int rowCount=pst1.executeUpdate();
       		   if(rowCount>0)
